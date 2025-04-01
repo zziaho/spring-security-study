@@ -12,6 +12,7 @@ public class HomeController {
 
 	@GetMapping("/homeView")
 	public String homeView() {
+		log.debug("HOME 화면 호출");
 		return "home";
 	}
 
@@ -27,7 +28,6 @@ public class HomeController {
 
 	@GetMapping("/login")
 	public String loginView() {
-		log.debug("로그인 화면 호출");
 		return "login";
 	}
 
