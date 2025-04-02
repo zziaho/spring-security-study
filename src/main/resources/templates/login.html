@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>로그인</title>
+</head>
+<body style="padding-left: 50px">
+<h2>🔐 로그인 페이지</h2>
+
+<!-- 로그인 실패 시 메시지 표시 -->
+<div th:if="${param.error}">
+  <p th:switch="${param.error[0]}">
+    <span style="color: red" th:case="'locked'">🚫 잠긴 계정입니다.</span>
+    <span style="color: red;" th:case="*">❌ 아이디 또는 비밀번호가 올바르지 않습니다.</span>
+  </p>
+</div>
+
+<!-- 로그아웃 했을 때 메시지 표시 -->
+<div th:if="${param.logout}">
+  <p style="color: green;">✅ 로그아웃 되었습니다.</p>
+</div>
+
+<!-- 로그인 폼 -->
+<form th:action="@{/login}" method="post">
+  <div>
+    <label>아이디: </label>
+    <input type="text" name="username" required />
+  </div>
+  <div>
+    <label>비밀번호: </label>
+    <input type="password" name="password" required />
+  </div>
+  <button type="submit">로그인</button>
+</form>
+</body>
+</html>

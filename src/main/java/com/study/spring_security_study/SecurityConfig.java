@@ -1,5 +1,7 @@
 package com.study.spring_security_study;
 
+import com.study.spring_security_study.handler.CustomAccessDeniedHandler;
+import com.study.spring_security_study.handler.CustomAuthenticationFailureHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -43,15 +45,18 @@ public class SecurityConfig {
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers("/adminView").hasRole("ADMIN")
 						.requestMatchers("/userView").hasRole("USER")
-						.requestMatchers("/").authenticated()
+						.requestMatchers("/", "/homeView").authenticated()
 						.anyRequest().permitAll()
 				)
 				.formLogin(form -> form
 						.loginPage("/login")
 						.defaultSuccessUrl("/homeView", true)
+						.failureHandler(new CustomAuthenticationFailureHandler())
 						.permitAll()
 				)
-				.logout(logout -> logout.permitAll());
+				.logout(logout -> logout.permitAll())
+				.exceptionHandling(exception ->
+						exception.accessDeniedHandler(new CustomAccessDeniedHandler()));
 
 		return http.build();
 	}
