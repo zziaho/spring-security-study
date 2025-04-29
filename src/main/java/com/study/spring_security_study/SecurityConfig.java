@@ -46,7 +46,14 @@ public class SecurityConfig {
 						.requestMatchers("/adminView").hasRole("ADMIN")
 						.requestMatchers("/userView").hasRole("USER")
 						.requestMatchers("/", "/homeView").authenticated()
+						.requestMatchers("/h2-console/**").permitAll() // <-- 추가
 						.anyRequest().permitAll()
+				)
+				.csrf(csrf -> csrf
+						.ignoringRequestMatchers("/h2-console/**") // <-- CSRF 예외도 추가
+				)
+				.headers(headers -> headers
+						.frameOptions(frame -> frame.sameOrigin()) // <-- H2 콘솔은 iframe을 쓰니까 이것도 허용
 				)
 				.formLogin(form -> form
 						.loginPage("/login")
