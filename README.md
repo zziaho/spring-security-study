@@ -2,7 +2,8 @@
 
 스프링 시큐리티에 대한 내용을 학습하고 실습해보며 정리한 저장소입니다.  
 인증(Authentication), 인가(Authorization), 커스텀 로그인, 실패 처리, 에러 핸들러 등  
-실무에서 자주 쓰이는 보안 기능들을 직접 구현하며 학습했습니다.
+실무에서 자주 쓰이는 보안 기능들을 직접 구현하며 학습했습니다.  
+추가로 H2 Database를 연동하여 실습 환경을 구축했습니다.
 
 > 💡 해당 프로젝트는 `Spring Boot + Spring Security + Thymeleaf` 기반으로 작성되었습니다.
 
@@ -17,13 +18,18 @@ src/
 │   │       └── study/
 │   │           └── spring_security_study/
 │   │               ├── config/
-│   │               │   └── SecurityConfig.java                     # 시큐리티 설정
+│   │               │   └── SecurityConfig.java                      # Spring Security 설정
 │   │               ├── controller/
-│   │               │   ├── HomeController.java                     # 홈 & 로그인 화면
-│   │               │   └── ErrorViewController.java                # 에러 페이지 매핑
-│   │               └── handler/
-│   │                   ├── CustomAuthenticationFailureHandler.java # 인증 실패 핸들러
-│   │                   └── CustomAccessDeniedHandler.java          # 인가 실패 핸들러
+│   │               │   ├── HomeController.java                      # 홈 화면 및 로그인 화면 매핑
+│   │               │   └── ErrorViewController.java                 # 에러 페이지 매핑
+│   │               ├── handler/
+│   │               │   ├── CustomAuthenticationFailureHandler.java  # 인증 실패 핸들러
+│   │               │   └── CustomAccessDeniedHandler.java           # 인가 실패 핸들러
+│   │               └── member/
+│   │                   ├── entity/
+│   │                   │   └── User.java                            # 사용자 엔티티
+│   │                   └── repository/
+│   │                       └── UserRepository.java                  # 사용자 레포지토리
 │   └── resources/
 │       ├── templates/
 │       │   ├── login.html
@@ -60,17 +66,26 @@ src/
 
 ## 🧪 사용 기술 스택
 
-| 분류 | 기술 |
-|------|------|
-| Language | Java 17 |
-| Framework | Spring Boot 3.4.4 |
-| Security | Spring Security |
-| View | Thymeleaf |
-| Build Tool | Gradle (Groovy) |
+| 분류         | 기술                |
+|------------|-------------------|
+| Language   | Java 17           |
+| Framework  | Spring Boot 3.4.4 |
+| Security   | Spring Security   |
+| View       | Thymeleaf         |
+| Build Tool | Gradle (Groovy)   |
+| Database   | H2 Database       |
 
 ---
 
 ## 📝 블로그 포스팅
-Spring Security 학습 내용을 정리한 블로그입니다👇
+Spring Security 학습 내용을 정리한 블로그입니다 👇
 
 🔗 https://ziaho0403.tistory.com/
+
+---
+
+## 📌 주의사항
+
+- 본 프로젝트는 학습용입니다. 
+- 운영 환경에서는 별도의 설정(Production DB, HTTPS, 보안 강화 등)이 필요합니다.
+
