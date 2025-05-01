@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입</title>
+<style>
+    body { padding: 40px; }
+    label { display: block; margin-top: 10px; }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] { margin-top: 4px; }
+    .error { color: red; margin-top: 8px; }
+</style>
+</head>
+<body style="padding-left: 20px">
+<div class="container">
+  <h2>회원가입</h2>
+
+  <!-- 에러 메시지 표시 -->
+  <div th:if="${error}" class="error" th:text="${error}"></div>
+
+  <!-- 회원가입 폼 -->
+  <!-- Controller에서 바인딩한 user object 사용 -->
+  <form th:action="@{/user/signUp}" th:object="${user}" method="post">
+    <label for="username" style="display: block">이름</label>
+    <input type="text" id="userName" th:field="*{userName}" placeholder="이름을 입력하세요" required />
+
+    <label for="email">이메일</label>
+    <input type="email" id="email" th:field="*{email}" placeholder="이메일 주소" required />
+
+    <label for="password">비밀번호</label>
+    <input type="password" id="password" th:field="*{password}" placeholder="비밀번호" required />
+
+    <button type="submit">회원가입</button>
+  </form>
+</div>
+</body>
+</html>
