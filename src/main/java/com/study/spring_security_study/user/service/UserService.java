@@ -33,7 +33,7 @@ public class UserService {
 		String encodedPassword = passwordEncoder.encode(userSignupDto.getPassword());
 
 		User user = User.createUser(
-				userSignupDto.getUserName(),
+				userSignupDto.getUsername(),
 				encodedPassword,
 				userSignupDto.getEmail()
 		);

@@ -11,7 +11,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	 * username으로 사용자 조회 메서드
 	 * 이 메서드는 현재 사용하지 않으나 예시를 위해 생성한 메서드입니다.
 	 */
-	Optional<User> findByUserName(String userName);
+	Optional<User> findByUsername(String username);
 
 	/**
 	 * 이메일 중복 체크
@@ -21,6 +21,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	/**
 	 * 이메일로 사용자 조회
 	 */
-	User findByEmail(String email);
+	Optional<User> findByEmail(String email);
 
 }

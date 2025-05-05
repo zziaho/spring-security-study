@@ -18,7 +18,7 @@ public class User {
 	private Long id;
 
 	@Column(nullable = false, unique = true) // null 값 들어갈 수 없음, 중복값 불가
-	private String userName; // 사용자 이름
+	private String username; // 사용자 이름
 
 	@Column(nullable = false) // null 값 들어갈 수 없음
 	private String password; // 사용자 패스워드
@@ -33,9 +33,9 @@ public class User {
 	protected User() {};
 
 	// 정적 팩토리 메서드 방식으로 객체 생성 
-	public static User createUser(String userName, String password, String email) {
+	public static User createUser(String username, String password, String email) {
 		User user = new User();
-		user.userName = userName;
+		user.username = username;
 		user.password = password;
 		user.email = email;
 		user.role = "ROLE_USER";
